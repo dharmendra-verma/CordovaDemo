@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+        
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        
+
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>BlankCordovaApp1</title>
+    </head>
+    <body>
+        <div id="maindiv"> <!--class="app"-->
+            <h1>Apache Cordova</h1>
+            <div id="deviceready" class="blink">
+                <p class="event listening">Connecting to Device</p>
+                <p class="event received">Device is Ready</p>
+                <button id="showpdf">download PDF</button>
+            </div>
+        </div>
+        <div>
+            <canvas id="pdf-canvas" width="400" style="border:1px solid"></canvas>
+           
+            <button type="button" id="text">Text</button>
+            <button type="button" id="Clear">Clear</button>
+            <button type="button" id="Increment">Increment</button>
+            <button type="button" id="Decrement">Decrement</button>
+            <button type="button" id="Rectangle">Rectangle</button>
+            <button type="button" id="Image">Image</button>
+
+        </div>
+        <div>
+            <img id="myImage" src="images/cordova.png" style="visibility:hidden"/>
+            <!--style="{visibility:hidden}"-->
+        </div>
+        <div>
+            <p id="startX">X:</p>
+            <p id="startY">Y:</p>
+
+            <p id="curX">X:</p>
+            <p id="curY">Y:</p>
+        </div>
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>-->
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>-->
+        <script type="text/javascript" src="scripts/index.js"></script>
+        <script src="scripts/pdf.js"></script>
+        <script src="scripts/pdf.worker.js"></script>
+    </body>
+</html>
