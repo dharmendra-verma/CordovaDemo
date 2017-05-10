@@ -48,6 +48,7 @@
         document.getElementById("Decrement").addEventListener("click", Decrement);
         document.getElementById("Rectangle").addEventListener("click", Rectangle);
         document.getElementById("Image").addEventListener("click", Image);
+        document.getElementById("ReDo").addEventListener("click", ReDo);
         
 
     };
@@ -69,33 +70,6 @@
         window.resolveLocalFileSystemURI(filePath, onFileSystemSuccess, function (e) {
             console.log("error getting file");
         });
-
-
-        //window.resolveLocalFileSystemURL(filePath, function (entry) {
-        //    var fileTransfer = new FileTransfer();
-        //    var targetFile = cordova.file.externalDataDirectory + entry.name;
-
-        //    fileTransfer.download(
-        //        entry.toURL(),
-        //        targetFile,
-        //        function (entry) {
-        //            cordova.plugins.fileOpener2.open(
-        //                targetFile,
-        //                'application/pdf',
-        //                {
-        //                    error: function (error) { alert('open error ' + JSON.stringify(error)) },
-        //                    success: function () { }
-        //                }
-        //            );
-
-        //        },
-        //        function (error) {
-        //            console.log("download error source " + error.source);
-        //            console.log("download error target " + error.target);
-        //            console.log("upload error code" + error.code);
-        //        }
-        //    );
-        //});
     }
 
     function onFileSystemSuccess(e) {
@@ -173,6 +147,7 @@
 
     function canvas_touchend(e) {
         this.canvas_onmousemove(e);
+        context.save();
         isDrawing = false;
     };
 
@@ -186,6 +161,7 @@
 
             curX.innerHTML = x;
             curY.innerHTML = y;
+            context.save();
         }
     };
 
@@ -200,15 +176,18 @@
     function showN() {
         context.clearRect(0, 0, canvas.width, canvas.height, 99);
         context.fillText(n, canvas.width / 2, canvas.height / 2);
+        context.save();
     }
 
     function ClearDrawing() {
         context.clearRect(0, 0, canvas.width, canvas.height, 99);
+        context.save();
     }
 
     function Increment() {
         n++;
         showN();
+        context.save();
     }
 
     function Decrement() {
@@ -224,6 +203,7 @@
         var height = 80;
 
         context.fillRect(x, y, width, height);
+        
 
         x = 100;
         y = 10;
@@ -255,6 +235,8 @@
         endAngle = Math.PI * 2;
         context.arc(x, y, radius, startAngle, endAngle);
         context.stroke();
+
+        context.save();
     }
 
     function Image() {
@@ -264,23 +246,11 @@
         var img = document.getElementById('myImage');
         context.drawImage(img, 10, 10, 100, 100);
 
-        //img.addEventListener('load', function () {
-        //    context.drawImage(img, 10, 10, 200, 200);
-        //}, false);
-        //img.src = filePath;
-        
-    //    window.resolveLocalFileSystemURI(
-    //            filePath,
-
-    //            function (e) {
-    //                console.log("error getting file");
-    //            },  
-
-    //            function (e) {
-    //            console.log("error getting file");
-    //            });
     }
 
+    function ReDo() {
+        context.restore();
+    }
     function onGetDirectorySuccess(dir) {
         cdr = dir;
         console.log("dir : " + dir);
